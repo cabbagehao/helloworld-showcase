@@ -1,7 +1,7 @@
 import { ProgrammingLanguage } from '../types';
 
 export function generateMetaTags(language: ProgrammingLanguage) {
-  const title = `${language.name} Hello World - Programming Language Guide`;
+  const title = `${language.name} Hello World Example and Syntax Guide`;
   const description = `Learn ${language.name} programming with Hello World example and basic syntax guide. ${language.description}`;
   const keywords = `${language.name.toLowerCase()}, ${language.name.toLowerCase()} hello world, ${language.name.toLowerCase()} programming, ${language.name.toLowerCase()} syntax, ${language.name.toLowerCase()} example`;
 
@@ -13,7 +13,7 @@ export function generateMetaTags(language: ProgrammingLanguage) {
 }
 
 export function generateCanonicalUrl(language: string): string {
-  return `/languages/${normalizeLanguageName(language)}`;
+  return `/languages/${normalizeLanguageName(language)}-hello-world`;
 }
 
 export function normalizeLanguageName(name: string): string {
