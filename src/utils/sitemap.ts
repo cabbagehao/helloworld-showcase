@@ -52,4 +52,5 @@ ${urls.map(url => `  <url>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority.toFixed(1)}</priority>
   </url>`).join('\n')}
-</urlset>`;}
+</urlset>`;
+}

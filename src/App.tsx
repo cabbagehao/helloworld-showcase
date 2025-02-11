@@ -4,16 +4,25 @@ import { HomePage } from './pages/HomePage';
 import { RankingsPage } from './pages/RankingsPage';
 import { SourcesPage } from './pages/SourcesPage';
 import { LanguagePage } from './pages/languages/LanguagePage';
+import { useAnalytics } from './hooks/useAnalytics';
+
+function AppRoutes() {
+  useAnalytics();
+
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/rankings" element={<RankingsPage />} />
+      <Route path="/sources" element={<SourcesPage />} />
+      <Route path="/languages/:language" element={<LanguagePage />} />
+    </Routes>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/rankings" element={<RankingsPage />} />
-        <Route path="/sources" element={<SourcesPage />} />
-        <Route path="/languages/:language" element={<LanguagePage />} />
-      </Routes>
+      <AppRoutes />
     </Router>
   );
 }
