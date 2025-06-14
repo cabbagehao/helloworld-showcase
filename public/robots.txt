@@ -5,7 +5,7 @@ Allow: /
 Sitemap: https://helloworld.yhc.so/sitemap.xml
 
 # Crawl-delay
-Crawl-delay: 10
+Crawl-delay: 1
 
 # Additional rules
 Disallow: /api/

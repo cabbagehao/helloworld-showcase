@@ -14,7 +14,7 @@ function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/rankings" element={<RankingsPage />} />
       <Route path="/sources" element={<SourcesPage />} />
-      <Route path="/languages/:language" element={<LanguagePage />} />
+      <Route path="/:language" element={<LanguagePage />} />
     </Routes>
   );
 }

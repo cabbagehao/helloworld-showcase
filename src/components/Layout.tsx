@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Code2 } from 'lucide-react';
 import { Navigation } from './Navigation';
 import { ScrollToTop } from './ScrollToTop';
@@ -7,21 +8,87 @@ interface LayoutProps {
   children: React.ReactNode;
   title?: string;
   description?: string;
+  keywords?: string;
+  canonical?: string;
+  ogImage?: string;
 }
 
-export function Layout({ children, title, description }: LayoutProps) {
+export function Layout({
+  children,
+  title,
+  description = 'Explore Hello World examples and basic syntax in different programming languages. A comprehensive resource for developers learning new languages.',
+  keywords,
+  canonical,
+  ogImage = 'https://helloworld.yhc.so/og-image.png'
+}: LayoutProps) {
   const pageTitle = title ? `${title} - Hello World Showcase` : 'Hello World Showcase';
-  
-  React.useEffect(() => {
-    document.title = pageTitle;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description || 'Explore Hello World examples and basic syntax in different programming languages. A comprehensive resource for developers learning new languages.');
-    }
-  }, [pageTitle, description]);
+  const currentUrl = canonical ? `https://helloworld.yhc.so${canonical}` : 'https://helloworld.yhc.so';
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={description} />
+        {keywords && <meta name="keywords" content={keywords} />}
+        <meta name="author" content="Hello World Showcase" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="en-US" />
+        <meta name="rating" content="general" />
+        <meta name="distribution" content="global" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href={currentUrl} />
+
+        {/* Open Graph Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:site_name" content="Hello World Showcase" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:site" content="@helloworldshow" />
+        <meta name="twitter:creator" content="@helloworldshow" />
+
+        {/* Additional Meta Tags */}
+        <meta name="theme-color" content="#2563eb" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Hello World" />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Hello World Showcase",
+            "url": "https://helloworld.yhc.so",
+            "description": "Explore Hello World examples and basic syntax in different programming languages",
+            "author": {
+              "@type": "Organization",
+              "name": "Hello World Showcase"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Hello World Showcase"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://helloworld.yhc.so/?search={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+      </Helmet>
+
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-3">

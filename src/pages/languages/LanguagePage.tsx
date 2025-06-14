@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Layout } from '../../components/Layout';
 import { LanguageContent } from '../../components/LanguageContent';
 import { getLanguageBySlug } from '../../utils/routes';
-import { generateMetaTags } from '../../utils/seo';
+import { generateMetaTags, normalizeLanguageName, generateLanguageSEODescription } from '../../utils/seo';
 
 export function LanguagePage() {
   const { language } = useParams<{ language: string }>();
@@ -33,9 +33,15 @@ export function LanguagePage() {
   }
 
   const meta = generateMetaTags(languageData);
+  const canonicalUrl = `/${normalizeLanguageName(languageData.name)}-hello-world`;
 
   return (
-    <Layout title={meta.title} description={meta.description}>
+    <Layout
+      title={meta.title}
+      description={meta.description}
+      keywords={meta.keywords}
+      canonical={canonicalUrl}
+    >
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <button
           onClick={() => navigate(-1)}
@@ -45,6 +51,30 @@ export function LanguagePage() {
           Back
         </button>
         <LanguageContent language={languageData} />
+
+                {/* SEO Content Section */}
+        <section className="mt-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            About {languageData.name} Programming Language
+          </h2>
+
+                    <div className="prose dark:prose-invert max-w-none">
+            <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">
+              {generateLanguageSEODescription(languageData)}
+            </div>
+
+            <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                💡 Learning Tips
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                The best way to get started with {languageData.name} programming is to first run Hello World examples and understand the code structure and syntax rules.
+                Then gradually learn core concepts like variables, functions, and classes, deepening understanding through practical projects.
+                It's recommended to read official documentation and participate in open source projects to improve programming skills.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
     </Layout>
   );

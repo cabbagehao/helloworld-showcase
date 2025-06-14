@@ -90,13 +90,15 @@ export function SourcesPage() {
     <Layout
       title="Ranking Sources"
       description="Explore various programming language popularity ranking sources and methodologies."
+      keywords="programming language sources, TIOBE index, IEEE spectrum, PYPL, RedMonk, GitHub octoverse, Stack Overflow survey"
+      canonical="/sources"
     >
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Programming Language Ranking Sources
           </h2>
-          
+
           <p className="text-gray-600 dark:text-gray-400 mb-8">
             Compare programming language popularity across different ranking systems and methodologies.
             Each source uses different metrics to evaluate language popularity and adoption.
